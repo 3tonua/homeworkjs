@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calc</title>
+</head>
+<body>
+
+<script>
+
+    var numbera = + (prompt('Введите число a'));
+    var symbol = prompt('Введите символ (+ - * /)');
+    var numberb = + (prompt('Введите число  b'));
+
+    function plus (a, b) {
+        return a + b
+    }
+    function minus (a, b) {
+        return a - b
+    }
+    function umn (a, b) {
+        return a * b
+    }
+    function del (a, b) {
+        return a / b
+    }
+
+    plus (numbera, numberb);
+    minus (numbera, numberb);
+    umn (numbera, numberb);
+    del (numberb, numbera);
+
+    var p = plus(numbera, numberb);
+    var m = minus(numbera, numberb);
+    var u = umn(numbera, numberb);
+    var d = del(numbera, numberb);
+
+    if (symbol == '+'){
+        alert(p);
+    } else if (symbol == '-'){
+        alert(m);
+    } else if (symbol == '*'){
+        alert(u);
+    } else if (symbol == '/'){
+        alert(d);
+    } else {
+        alert('Ошибка');
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Privatbank</title>
+</head>
+<body>
+
+<style>
+    * {
+        font-family: Arial;
+        font-size: 22px;
+    }
+    .table {
+        border: 1px solid lightgreen;
+        border-radius: 7px;
+        width: 150px;
+        height: 250px;
+        text-align: center;
+        display: inline-block;
+        margin-left: 10px;
+        margin-top: 10px;
+        position: relative;
+        background: rgba(0, 255, 3, 0.1);
+    }
+    .s{
+        font-size: 26px;
+    }
+</style>
+
+    <div id="usd" class="table">
+        <h2>Доллар</h2>
+        <p>Покупка:</p>
+        <p><span id="usdpok" class="s">запрос...</span></p>
+        <p>Продажа:</p>
+        <p><span id="usdpro" class="s">запрос...</span></p>
+    </div>
+    <div id="eur" class="table">
+        <h2>Евро</h2>
+        <p>Покупка:</p>
+        <p><span id="eurpok" class="s">запрос...</span></p>
+        <p>Продажа:</p>
+        <p><span id="eurpro" class="s">запрос...</span></p>
+    </div>
+    <div id="rur" class="table">
+        <h2>Рубли</h2>
+        <p>Покупка:</p>
+        <p><span id="rurpok" class="s">запрос...</span></p>
+        <p>Продажа:</p>
+        <p><span id="rurpro" class="s">запрос...</span></p>
+    </div>
+
+<script>
+    var kurs = [];
+
+    var usd_pok=document.querySelector("#usdpok");
+    var usd_pro=document.querySelector("#usdpro");
+
+    var eur_pok=document.querySelector("#eurpok");
+    var eur_pro=document.querySelector("#eurpro");
+
+    var rur_pok=document.querySelector("#rurpok");
+    var rur_pro=document.querySelector("#rurpro");
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        /*чтобы работать с полученными данными, нужно писать внутри этой функции*/
+
+    kurs = this.response;
+        console.log(kurs);
+
+        usd_pok.innerHTML = kurs[2].buy;
+        usd_pro.innerHTML = kurs[2].sale;
+
+        eur_pok.innerHTML = kurs[0].buy;
+        eur_pro.innerHTML = kurs[0].sale;
+
+        rur_pok.innerHTML = kurs[1].buy;
+        rur_pro.innerHTML = kurs[1].sale;
+    };
+
+    xhr.open("GET", "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5");
+    xhr.responseType = "json";
+    xhr.send();
+
+</script>
+
+
+
+
+
+</body>
+</html>
